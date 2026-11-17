@@ -1,96 +1,119 @@
-﻿# EduSubmit - BÃ i 2 RESTful API
+﻿# EduSubmit - Bai 2: RESTful API
 
-**Sinh viÃªn:** Nguyá»…n Thá»‹ Quáº¿
+**Sinh vien:** Nguyen Thi Que
 **MSSV:** DTC245200583
-**Ná»n táº£ng:** .NET 8, ASP.NET Core Minimal API, HttpClient
+**Cong nghe:** .NET 8, ASP.NET Core Minimal API, HttpClient
 
-> ÄÃ¢y lÃ  bá»™ mÃ£ nguá»“n EduSubmit Ä‘Æ°á»£c dá»±ng theo phá»¥ lá»¥c hÆ°á»›ng dáº«n BÃ i 2. TrÆ°á»›c khi ná»™p, cáº§n cháº¡y thá»­ trÃªn mÃ¡y cÃ¡ nhÃ¢n, thay URL kho mÃ£ nguá»“n máº«u báº±ng URL repository tháº­t vÃ  bá»• sung áº£nh chá»¥p káº¿t quáº£ tháº­t vÃ o `docs/images/`.
-
-## 1. Cáº¥u trÃºc thÆ° má»¥c
+## 1. Cau truc thu muc
 
 ```text
 Bai2/
-â”œâ”€â”€ EduSubmit.sln
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ README.md
-â”œâ”€â”€ requests.http
-â””â”€â”€ src/
-    â”œâ”€â”€ Submission.Api/
-    â”‚   â”œâ”€â”€ Submission.Api.csproj
-    â”‚   â””â”€â”€ Program.cs
-    â””â”€â”€ Submission.Client/
-        â”œâ”€â”€ Submission.Client.csproj
-        â””â”€â”€ Program.cs
+├── CatalogApi/
+├── docs/
+│   └── images/
+│       ├── 01-build-succeeded.png
+│       ├── 02-api-assignments.png
+│       ├── 03-client-four-steps.png
+│       └── 04-post-created.png
+├── src/
+│   ├── Submission.Api/
+│   │   ├── Submission.Api.csproj
+│   │   └── Program.cs
+│   └── Submission.Client/
+│       ├── Submission.Client.csproj
+│       └── Program.cs
+├── EduSubmit.sln
+├── global.json
+├── README.md
+└── requests.http
 ```
 
-## 2. YÃªu cáº§u
+## 2. Yeu cau
 
-- CÃ i .NET SDK 8.0 trá»Ÿ lÃªn.
-- Má»Ÿ terminal táº¡i thÆ° má»¥c chá»©a `EduSubmit.sln`.
+- Cai dat .NET SDK 8.0 tro len.
+- Mo PowerShell tai thu muc chua file `EduSubmit.sln`.
 
-Kiá»ƒm tra SDK:
+Kiem tra SDK:
 
 ```powershell
 dotnet --list-sdks
 ```
-## 3. Build solution
 
-Sá»­ dá»¥ng solution Ä‘á»‹nh dáº¡ng `.sln` Ä‘á»ƒ tÆ°Æ¡ng thÃ­ch vá»›i .NET SDK 8:
+## 3. Khoi phuc va Build
+
+Chay cac lenh sau tai thu muc goc Bai2:
 
 ```powershell
 dotnet restore .\EduSubmit.sln
 dotnet build .\EduSubmit.sln
+```
 
-Káº¿t quáº£ mong Ä‘á»£i: `Build succeeded`, khÃ´ng cÃ³ lá»—i.
+Ket qua mong doi: `Build succeeded`, khong co loi.
 
-## 4. Cháº¡y API
+Anh minh chung:
 
-Má»Ÿ Terminal 1 táº¡i thÆ° má»¥c gá»‘c:
+![Build thanh cong](docs/images/01-build-succeeded.png)
+
+## 4. Chay Submission.Api
+
+Mo Terminal 1 tai thu muc goc Bai2:
 
 ```powershell
 dotnet run --project .\src\Submission.Api\Submission.Api.csproj --urls http://localhost:5000
 ```
 
-Giá»¯ terminal nÃ y má»Ÿ. Kiá»ƒm tra API báº±ng Terminal 2:
+Giu Terminal 1 dang chay.
+
+Mo Terminal 2 va kiem tra API:
 
 ```powershell
 curl.exe -i http://localhost:5000/
 curl.exe -i http://localhost:5000/api/assignments
 ```
 
-API sá»­ dá»¥ng dá»¯ liá»‡u trong RAM. Khi khá»Ÿi Ä‘á»™ng láº¡i API, danh sÃ¡ch lÆ°á»£t ná»™p Ä‘Æ°á»£c táº¡o trÆ°á»›c Ä‘Ã³ sáº½ máº¥t.
+Ket qua mong doi: API phan hoi thanh cong va tra ve danh sach bai tap.
 
-## 5. Cháº¡y Client
+Anh minh chung:
 
-Má»Ÿ Terminal 2 táº¡i thÆ° má»¥c gá»‘c:
+![GET danh sach bai tap](docs/images/02-api-assignments.png)
+
+Luu y: API luu du lieu luot nop trong bo nho RAM. Khi khoi dong lai API, du lieu luot nop truoc do se mat.
+
+## 5. Chay Submission.Client
+
+Giu API dang chay. Mo mot Terminal khac tai thu muc goc Bai2:
 
 ```powershell
 dotnet run --project .\src\Submission.Client\Submission.Client.csproj
 ```
 
-Client thá»±c hiá»‡n Ä‘á»§ 4 náº¥c:
+Client thuc hien 4 buoc:
 
-1. Liá»‡t kÃª cÃ¡c bÃ i táº­p Ä‘ang má»Ÿ.
-2. Gá»­i POST táº¡o lÆ°á»£t ná»™p.
-3. Äá»c láº¡i lÆ°á»£t ná»™p báº±ng URI nháº­n tá»« header `Location`.
-4. Cá»‘ Ã½ gá»­i dá»¯ liá»‡u sai, kiá»ƒm tra mÃ£ HTTP trÆ°á»›c khi Ä‘á»c lá»—i; chÆ°Æ¡ng trÃ¬nh khÃ´ng bá»‹ dá»«ng Ä‘á»™t ngá»™t vÃ¬ lá»—i 400.
+1. Lay danh sach bai tap dang mo.
+2. Gui POST de tao luot nop bai.
+3. Doc lai luot nop bang URI nhan duoc tu header `Location`.
+4. Gui du lieu khong hop le va kiem tra phan hoi HTTP 400.
 
-CÃ³ thá»ƒ truyá»n Ä‘á»‹a chá»‰ API khÃ¡c qua tham sá»‘ dÃ²ng lá»‡nh:
+Co the truyen dia chi API qua tham so dong lenh:
 
 ```powershell
 dotnet run --project .\src\Submission.Client\Submission.Client.csproj -- http://localhost:5000
 ```
 
-## 6. Há»£p Ä‘á»“ng API
+Anh minh chung:
 
-| PhÆ°Æ¡ng thá»©c | URI | ThÃ nh cÃ´ng | Lá»—i |
+![Client thuc hien 4 buoc](docs/images/03-client-four-steps.png)
+
+## 6. Danh sach API
+
+| Phuong thuc | URI | Ket qua thanh cong | Ket qua loi |
 |---|---|---|---|
-| GET | `/api/assignments` | 200 danh sÃ¡ch bÃ i táº­p | â€” |
-| GET | `/api/assignments/{id}` | 200 chi tiáº¿t bÃ i táº­p | 404 `ASSIGNMENT_NOT_FOUND` |
-| POST | `/api/assignments/{id}/submissions` | 201 + `Location` | 400 `INVALID_SUBMISSION`, 400 `ASSIGNMENT_CLOSED`, 404 `ASSIGNMENT_NOT_FOUND` |
-| GET | `/api/submissions/{submissionId}` | 200 lÆ°á»£t ná»™p | 404 `SUBMISSION_NOT_FOUND` |
+| GET | `/api/assignments` | 200 OK | - |
+| GET | `/api/assignments/{id}` | 200 OK | 404 Not Found |
+| POST | `/api/assignments/{id}/submissions` | 201 Created | 400 Bad Request, 404 Not Found |
+| GET | `/api/submissions/{submissionId}` | 200 OK | 404 Not Found |
 
-CÃ¡c lá»—i do handler chá»§ Ä‘á»™ng tráº£ vá» sá»­ dá»¥ng cÃ¹ng cáº¥u trÃºc:
+Vi du phan hoi loi:
 
 ```json
 {
@@ -99,72 +122,56 @@ CÃ¡c lá»—i do handler chá»§ Ä‘á»™ng tráº£ vá» sá»­ dá
 }
 ```
 
-## 7. Cháº¡y requests.http
+## 7. Huong dan kiem thu bang requests.http
 
-Má»Ÿ `requests.http` báº±ng VS Code cÃ³ REST Client extension. Khá»Ÿi Ä‘á»™ng API trÆ°á»›c, sau Ä‘Ã³ báº¥m **Send Request** theo thá»© tá»± tá»« 1 Ä‘áº¿n 7. Request sá»‘ 5 láº¥y `id` Ä‘á»™ng tá»« pháº£n há»“i cá»§a request sá»‘ 4.
+Mo file `requests.http` bang Visual Studio Code co cai dat extension REST Client.
 
-## 8. Báº£ng phÃ¡ thá»­ theo 8 ca trong tÃ i liá»‡u hÆ°á»›ng dáº«n
+Khoi dong API truoc, sau do bam `Send Request` theo thu tu tu Request 1 den Request 7.
 
-| Ca | Thá»­ nghiá»‡m | MÃ£ mong Ä‘á»£i | NÆ¡i tráº£ lá»i |
-|---|---|---:|---|
-| 5a | POST bÃ i 1 vá»›i body há»£p lá»‡ | 201 + Location | Handler |
-| 5b | POST bÃ i 1 vá»›i body rá»—ng | 400 `INVALID_SUBMISSION` | Handler |
-| 5c | POST bÃ i 999 | 404 `ASSIGNMENT_NOT_FOUND` | Handler |
-| 5d | Bá» header `Content-Type` khi gá»­i JSON | 415, body rá»—ng | Framework |
-| 5e | Gá»­i JSON sai cÃº phÃ¡p | 400, body vÄƒn báº£n | Framework |
-| 5f | Body thiáº¿u `repositoryUrl` | 400 `INVALID_SUBMISSION` | Handler |
-| 5g | PUT `/api/assignments/1` | 405, `Allow: GET` | Framework |
-| 5h | POST vÃ o bÃ i táº­p Ä‘Ã£ Ä‘Ã³ng (ID 3) | 400 `ASSIGNMENT_CLOSED` | Handler |
+Request 5 su dung ID luot nop nhan duoc tu phan hoi cua Request 4.
 
-LÆ°u Ã½: `requests.http` cÃ³ 7 request theo checklist ná»™p bÃ i. Báº£ng trÃªn ghi Ä‘á»§ 8 tÃ¬nh huá»‘ng phÃ¡ thá»­; cÃ³ thá»ƒ thá»±c hiá»‡n ca 5d, 5e, 5g báº±ng cÃ¡ch táº¡o request thá»­ bá»• sung hoáº·c dÃ¹ng lá»‡nh HTTP riÃªng. Ba ca do framework tráº£ lá»i khÃ´ng nháº¥t thiáº¿t cÃ³ `ApiError`.
+## 8. Bang pha thu
 
-## 9. Ba cÃ¢u há»i giáº£i thÃ­ch
+Bang duoi day trinh bay 8 ca thu theo tai lieu huong dan Bai 2.
 
-### CÃ¢u 1. VÃ¬ sao URI dÃ¹ng danh tá»«, khÃ´ng dÃ¹ng Ä‘á»™ng tá»«?
+| Ca thu | Noi dung kiem thu | Ket qua mong doi | Ket qua thuc te |
+|---|---|---|---|
+| 5a | POST bai 1 voi body hop le | 201 Created va co header Location | 201 Created |
+| 5b | POST bai 1 voi body rong | 400 INVALID_SUBMISSION | 400 Bad Request |
+| 5c | POST bai tap ID 999 | 404 ASSIGNMENT_NOT_FOUND | 404 Not Found |
+| 5d | Gui JSON khong co Content-Type | 415 Unsupported Media Type | 415 Unsupported Media Type |
+| 5e | Gui JSON co repositoryUrl khong hop le | 400 Bad Request | 400 Bad Request |
+| 5f | Body thieu studentCode | 400 INVALID_SUBMISSION | 400 Bad Request |
+| 5g | Gui GET den `/api/assignments/1/submissions` | 405 Method Not Allowed | 405 Method Not Allowed |
+| 5h | POST vao bai tap da dong ID 3 | 400 ASSIGNMENT_CLOSED | 400 Bad Request - ASSIGNMENT_CLOSED |
+Anh minh chung POST hop le:
 
-URI dÃ¹ng Ä‘á»ƒ Ä‘á»‹nh danh tÃ i nguyÃªn. HÃ nh Ä‘á»™ng Ä‘Æ°á»£c thá»ƒ hiá»‡n báº±ng phÆ°Æ¡ng thá»©c HTTP. VÃ­ dá»¥ `POST /api/assignments/1/submissions` cÃ³ nghÄ©a lÃ  táº¡o má»™t lÆ°á»£t ná»™p thuá»™c bÃ i táº­p sá»‘ 1. KhÃ´ng cáº§n Ä‘áº·t URI kiá»ƒu `/submitAssignment`.
+![POST tao luot nop thanh cong](docs/images/04-post-created.png)
 
-### CÃ¢u 2. Stateless thá»ƒ hiá»‡n á»Ÿ Ä‘Ã¢u?
+## 9. Tra loi 3 cau hoi
 
-Má»—i request tá»± mang Ä‘á»§ thÃ´ng tin cáº§n thiáº¿t Ä‘á»ƒ server xá»­ lÃ½. VÃ­ dá»¥, `assignmentId` náº±m trÃªn URI, cÃ²n `studentCode` vÃ  `repositoryUrl` náº±m trong JSON body. Server khÃ´ng cáº§n dá»±a vÃ o tráº¡ng thÃ¡i phiÃªn lÃ m viá»‡c Ä‘Æ°á»£c lÆ°u tá»« request trÆ°á»›c cá»§a client.
+### Cau 1. Vi sao URI dung danh tu, con hanh dong do phuong thuc HTTP dam nhan?
 
-### CÃ¢u 3. VÃ¬ sao má»—i bÃªn khai bÃ¡o DTO riÃªng?
+URI dung de dinh danh tai nguyen can thao tac, vi du `/api/assignments/1/submissions`. Cac phuong thuc HTTP the hien hanh dong tren tai nguyen: GET de lay du lieu, POST de tao du lieu, PUT de cap nhat va DELETE de xoa du lieu.
 
-Client vÃ  API lÃ  hai chÆ°Æ¡ng trÃ¬nh Ä‘á»™c láº­p. DTO lÃ  mÃ´ táº£ cáº¥u trÃºc dá»¯ liá»‡u trao Ä‘á»•i qua JSON; hai bÃªn chá»‰ cáº§n thá»‘ng nháº¥t tÃªn trÆ°á»ng vÃ  kiá»ƒu dá»¯ liá»‡u trong há»£p Ä‘á»“ng. VÃ¬ váº­y, khÃ´ng cáº§n táº¡o project dÃ¹ng chung hoáº·c tham chiáº¿u trá»±c tiáº¿p class C# cá»§a bÃªn cÃ²n láº¡i.
+Vi du: `POST /api/assignments/1/submissions` co nghia la tao mot luot nop bai thuoc bai tap co ID 1.
 
-## 10. áº¢nh minh chá»©ng cáº§n bá»• sung
+### Cau 2. Stateless the hien o dau trong code da viet?
 
-Táº¡o thÆ° má»¥c `docs/images/` vÃ  lÆ°u áº£nh chá»¥p tháº­t cá»§a cÃ¡c káº¿t quáº£ sau:
+Stateless the hien o viec moi HTTP request tu mang day du thong tin can thiet de Server xu ly. Vi du, `assignmentId` nam tren URI, con `studentCode` va `repositoryUrl` nam trong JSON body.
 
-1. `01-build-succeeded.png`: cá»­a sá»• terminal cháº¡y `dotnet build`.
-2. `02-api-assignments.png`: API tráº£ 200 vÃ  danh sÃ¡ch bÃ i táº­p.
-3. `03-client-four-steps.png`: Client cháº¡y Ä‘á»§ bá»‘n náº¥c.
-4. `04-post-created.png`: POST há»£p lá»‡ tráº£ 201 vÃ  cÃ³ `Location`.
-5. `05-invalid-submission.png`: POST dá»¯ liá»‡u sai tráº£ 400 cÃ¹ng `ApiError`.
+Server xu ly tung request doc lap, khong phu thuoc vao trang thai phien lam viec cua request truoc do.
 
-**KhÃ´ng dÃ¹ng áº£nh minh há»a hoáº·c áº£nh dá»±ng thay cho káº¿t quáº£ cháº¡y tháº­t.** Sau khi chá»¥p, chÃ¨n áº£nh vÃ o README hoáº·c Ä‘áº·t cÃ¡c áº£nh trong thÆ° má»¥c `docs/images/`.
+### Cau 3. Vi sao Client va Server khai bao DTO rieng ma van khop nhau?
 
-## 11. Vá»‹ trÃ­ bÃ i ná»™p trÃªn GitHub
+Client va Server la hai chuong trinh doc lap nen moi ben co the khai bao DTO rieng. Hai ben van trao doi du lieu chinh xac vi cung tuan theo hop dong JSON da thong nhat, bao gom ten thuoc tinh, kieu du lieu va cau truc du lieu.
 
-BÃ i 2 Ä‘Æ°á»£c Ä‘áº·t trong repository theo cáº¥u trÃºc:
+Vi vay, Client va Server khong bat buoc phai dung chung mot class DTO trong cung project.
 
-```text
-Nguyá»…n Thá»‹ Quáº¿ - dtc245200583/
-â””â”€â”€ Bai2/
-    â”œâ”€â”€ CatalogApi/
-    â”œâ”€â”€ docs/
-    â”‚   â””â”€â”€ images/
-    â”œâ”€â”€ src/
-    â”‚   â”œâ”€â”€ Submission.Api/
-    â”‚   â””â”€â”€ Submission.Client/
-    â”œâ”€â”€ EduSubmit.sln
-    â”œâ”€â”€ EduSubmit.slnx
-    â”œâ”€â”€ global.json
-    â”œâ”€â”€ README.md
-    â””â”€â”€ requests.http
-**ThÃ´ng tin cáº­p nháº­t bÃ i ná»™p:**
+## 10. Thong tin nop bai
+
 - Repository: https://github.com/Dtc245200583/CNTTK23D
 - Branch: `patch-1`
 - Pull Request: https://github.com/PTUDPTK23/CNTTK23D/pull/70
 
-BÃ i 2 Ä‘Æ°á»£c bá»• sung vÃ o Pull Request hiá»‡n cÃ³, khÃ´ng táº¡o Pull Request má»›i.
+Bai 2 duoc cap nhat tren Pull Request hien co, khong tao Pull Request moi.
